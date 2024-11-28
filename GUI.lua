@@ -891,6 +891,20 @@ function MPOWA:Edit()
 		MPowa_ConfigFrame_Container_6_Slider_Spacing:SetValue(tnbr(self.SAVE[self.CurEdit].dynamicspacing))
 		MPowa_ConfigFrame_Container_6_Slider_SpacingText:SetText(MPOWA_SLIDER_SPACING..tnbr(self.SAVE[self.CurEdit].dynamicspacing))
 		
+		MPowa_ConfigFrame_Container_8_Editbox_Message:SetText(self.SAVE[self.CurEdit].message or "")
+		MPowa_ConfigFrame_Container_8_Checkbutton_Message_Say:SetChecked(self.SAVE[self.CurEdit].messageSay)
+		MPowa_ConfigFrame_Container_8_Checkbutton_Message_Shout:SetChecked(self.SAVE[self.CurEdit].messageShout)
+		MPowa_ConfigFrame_Container_8_Checkbutton_Message_Whisper:SetChecked(self.SAVE[self.CurEdit].messageWhisper)
+		MPowa_ConfigFrame_Container_8_Editbox_Message_Whisper_Player:SetText(self.SAVE[self.CurEdit].messageWhisperPlayer or "")
+		MPowa_ConfigFrame_Container_8_Checkbutton_Message_Group:SetChecked(self.SAVE[self.CurEdit].messageGroup)
+		MPowa_ConfigFrame_Container_8_Checkbutton_Message_Raid:SetChecked(self.SAVE[self.CurEdit].messageRaid)
+		
+		if MPOWA.SAVE[MPOWA.CurEdit]["messageWhisper"] then
+			MPowa_ConfigFrame_Container_8_Editbox_Message_Whisper_Player:Show()
+		else
+			MPowa_ConfigFrame_Container_8_Editbox_Message_Whisper_Player:Hide()
+		end
+		
 		MPowa_ConfigFrame_Container_1_Slider_BlendMode:SetValue(tnbr(self.SAVE[self.CurEdit].blendmode))
 		MPowa_ConfigFrame_Container_1_Slider_BlendModeText:SetText(MPOWA_SLIDER_BLENDMODE..MPowa_ConfigFrame_Container_1_Slider_BlendMode.valuetext[tnbr(self.SAVE[self.CurEdit].blendmode)])
 		MPowa_ConfigFrame_Container_1_Icon_Texture:SetBlendMode(MPowa_ConfigFrame_Container_1_Slider_BlendMode.valuetext[tnbr(self.SAVE[self.CurEdit].blendmode)])
@@ -1183,6 +1197,18 @@ function MPOWA:Editbox_Name(obj)
 	end
 end
 
+function MPOWA:Editbox_Message(obj)
+	if (obj:GetText() ~= nil) then
+		self.SAVE[self.CurEdit].message = obj:GetText();
+	end
+end
+
+function MPOWA:Editbox_Message_Whisper_Player(obj)
+	if (obj:GetText() ~= nil) then
+		self.SAVE[self.CurEdit].messageWhisperPlayer = obj:GetText();
+	end
+end
+
 function MPOWA:Editbox_Function(obj)
 	if (obj:GetText() ~= nil) then
 		local f = string.gsub(obj:GetText(), "\n", "");
@@ -1286,6 +1312,7 @@ function MPOWA:TestAll()
 				if self.SAVE[i] and self.SAVE[i]["used"] then
 					MPOWA:ApplyConfig(i)
 					_G("TextureFrame"..i):Show()
+					MPOWA:SendMessage(self.SAVE[i])
 				end
 			end
 		end
@@ -1304,8 +1331,29 @@ function MPOWA:Test()
 		else
 			self.SAVE[tested].test = true
 			_G("TextureFrame"..tested):Show()
+			MPOWA:SendMessage(self.SAVE[tested])
 		end
 		MPOWA:ApplyConfig(tested)
+	end
+end
+
+function MPOWA:SendMessage(powerAura)
+	if powerAura ~= nil and powerAura.message and powerAura.message ~= "" then
+		if powerAura.messageSay then
+			SendChatMessage(powerAura.message, "SAY")
+		end
+		if powerAura.messageShout then
+			SendChatMessage(powerAura.message, "YELL")
+		end
+		if powerAura.messageRaid then
+			SendChatMessage(powerAura.message, "RAID")
+		end
+		if powerAura.messageGroup then
+			SendChatMessage(powerAura.message, "PARTY")
+		end
+		if powerAura.messageWhisper and powerAura.messageWhisperPlayer and powerAura.messageWhisperPlayer ~= "" then
+			SendChatMessage(powerAura.message, "WHISPER", nil, powerAura.messageWhisperPlayer)
+		end
 	end
 end
 

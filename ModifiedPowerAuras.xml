@@ -2700,12 +2700,56 @@
 						</Frames>
 					</Frame>
 					<Frame name="$parent_8" inherits="MPowa_ContainerTemplate" hidden="true">
-						<Size x="290" y="120" />
+						<Size x="290" y="155" />
 						<Frames>
-							<CheckButton name="$parent_Checkbutton_Say" inherits="MPowa_CheckTemplate">
+							<EditBox name="$parent_Editbox_Message" autoFocus="false" inherits="InputBoxTemplate">
+								<Size x="270" y="16" />
 								<Anchors>
-									<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
-										<Offset x="10" y="-140" />
+									<Anchor point="TOP" relativeTo="$parent" relativePoint="TOP">
+										<Offset x="2" y="-30" />
+									</Anchor>
+								</Anchors>
+								<FontString inherits="ChatFontNormal" bytes="200" />
+								<Scripts>
+									<OnLoad>
+										this:SetMaxLetters(200)
+										this.aide = MPOWA_EDITBOX_MESSAGE_TOOLTIP
+										getglobal(this:GetName().."Text"):SetText(MPOWA_EDITBOX_MESSAGE)
+									</OnLoad>
+									<OnShow>
+										this:ClearFocus()
+									</OnShow>
+									<OnEnterPressed>
+										this:ClearFocus()
+									</OnEnterPressed>
+									<OnTextChanged>
+										MPOWA:Editbox_Message(this)
+									</OnTextChanged>
+									<OnEnter>
+										GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
+										GameTooltip:SetText(this.aide, nil, nil, nil, nil, 1)
+									</OnEnter>
+									<OnLeave>
+										GameTooltip:Hide()
+									</OnLeave>
+								</Scripts>
+								<Layers>
+									<Layer level="OVERLAY">
+										<FontString name="$parentText" inherits="GameFontNormalSmall" justifyH="LEFT" text="">
+											<Size x="200" y="20" />
+											<Anchors>
+												<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+													<Offset x="-2" y="0" />
+												</Anchor>
+											</Anchors>
+										</FontString>
+									</Layer>
+								</Layers>
+							</EditBox>
+							<CheckButton name="$parent_Checkbutton_Message_Say" inherits="MPowa_CheckTemplate">
+								<Anchors>
+									<Anchor point="TOPLEFT" relativeTo="$parent_Editbox_Message" relativePoint="TOPLEFT">
+										<Offset x="-5" y="-25" />
 									</Anchor>
 								</Anchors>
 								<Scripts>
@@ -2718,9 +2762,9 @@
 									</OnClick>
 								</Scripts>
 							</CheckButton>
-							<CheckButton name="$parent_Checkbutton_Group" inherits="MPowa_CheckTemplate">
+							<CheckButton name="$parent_Checkbutton_Message_Group" inherits="MPowa_CheckTemplate">
 								<Anchors>
-									<Anchor point="TOPLEFT" relativeTo="$parent_Checkbutton_Say" relativePoint="BOTTOMLEFT">
+									<Anchor point="TOPLEFT" relativeTo="$parent_Checkbutton_Message_Say" relativePoint="BOTTOMLEFT">
 										<Offset x="0" y="0" />
 									</Anchor>
 								</Anchors>
@@ -2734,41 +2778,9 @@
 									</OnClick>
 								</Scripts>
 							</CheckButton>
-							<CheckButton name="$parent_Checkbutton_Whisper" inherits="MPowa_CheckTemplate">
+							<CheckButton name="$parent_Checkbutton_Message_Raid" inherits="MPowa_CheckTemplate">
 								<Anchors>
-									<Anchor point="TOPLEFT" relativeTo="$parent_Checkbutton_Group" relativePoint="BOTTOMLEFT">
-										<Offset x="0" y="0" />
-									</Anchor>
-								</Anchors>
-								<Scripts>
-									<OnLoad>
-										this.tooltipText = MPOWA_CHECKBUTTON_MESSAGE_WHISPER_TOOLTIP
-										getglobal(this:GetName().."Text"):SetText(MPOWA_CHECKBUTTON_MESSAGE_WHISPER)
-									</OnLoad>
-									<OnClick>
-										MPOWA:Checkbutton("messageWhisper")
-									</OnClick>
-								</Scripts>
-							</CheckButton>
-							<CheckButton name="$parent_Checkbutton_Shout" inherits="MPowa_CheckTemplate">
-								<Anchors>
-									<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
-										<Offset x="180" y="-140" />
-									</Anchor>
-								</Anchors>
-								<Scripts>
-									<OnLoad>
-										this.tooltipText = MPOWA_CHECKBUTTON_MESSAGE_SHOUT_TOOLTIP
-										getglobal(this:GetName().."Text"):SetText(MPOWA_CHECKBUTTON_MESSAGE_SHOUT)
-									</OnLoad>
-									<OnClick>
-										MPOWA:Checkbutton("messageShout")
-									</OnClick>
-								</Scripts>
-							</CheckButton>
-							<CheckButton name="$parent_Checkbutton_Raid" inherits="MPowa_CheckTemplate">
-								<Anchors>
-									<Anchor point="TOPLEFT" relativeTo="$parent_Checkbutton_Shout" relativePoint="BOTTOMLEFT">
+									<Anchor point="TOPLEFT" relativeTo="$parent_Checkbutton_Message_Group" relativePoint="BOTTOMLEFT">
 										<Offset x="0" y="0" />
 									</Anchor>
 								</Anchors>
@@ -2782,6 +2794,88 @@
 									</OnClick>
 								</Scripts>
 							</CheckButton>
+							<CheckButton name="$parent_Checkbutton_Message_Shout" inherits="MPowa_CheckTemplate">
+								<Anchors>
+									<Anchor point="TOPLEFT" relativeTo="$parent_Editbox_Message" relativePoint="TOPLEFT">
+										<Offset x="160" y="-25" />
+									</Anchor>
+								</Anchors>
+								<Scripts>
+									<OnLoad>
+										this.tooltipText = MPOWA_CHECKBUTTON_MESSAGE_SHOUT_TOOLTIP
+										getglobal(this:GetName().."Text"):SetText(MPOWA_CHECKBUTTON_MESSAGE_SHOUT)
+									</OnLoad>
+									<OnClick>
+										MPOWA:Checkbutton("messageShout")
+									</OnClick>
+								</Scripts>
+							</CheckButton>
+							<CheckButton name="$parent_Checkbutton_Message_Whisper" inherits="MPowa_CheckTemplate">
+								<Anchors>
+									<Anchor point="TOPLEFT" relativeTo="$parent_Checkbutton_Message_Shout" relativePoint="BOTTOMLEFT">
+										<Offset x="0" y="0" />
+									</Anchor>
+								</Anchors>
+								<Scripts>
+									<OnLoad>
+										this.tooltipText = MPOWA_CHECKBUTTON_MESSAGE_WHISPER_TOOLTIP
+										getglobal(this:GetName().."Text"):SetText(MPOWA_CHECKBUTTON_MESSAGE_WHISPER)
+									</OnLoad>
+									<OnClick>
+										MPOWA:Checkbutton("messageWhisper")
+										if MPOWA.SAVE[MPOWA.CurEdit]["messageWhisper"] then
+											MPowa_ConfigFrame_Container_8_Editbox_Message_Whisper_Player:Show()
+										else
+											MPowa_ConfigFrame_Container_8_Editbox_Message_Whisper_Player:Hide()
+										end
+									</OnClick>
+								</Scripts>
+							</CheckButton>
+							<EditBox name="$parent_Editbox_Message_Whisper_Player" autoFocus="false" inherits="InputBoxTemplate" hidden="true">
+								<Size x="85" y="16" />
+								<Anchors>
+									<Anchor point="TOPLEFT" relativeTo="$parent_Checkbutton_Message_Whisper" relativePoint="BOTTOMLEFT">
+										<Offset x="7" y="-20" />
+									</Anchor>
+								</Anchors>
+								<FontString inherits="ChatFontNormal" bytes="200" />
+								<Scripts>
+									<OnLoad>
+										this:SetMaxLetters(200)
+										this.aide = MPOWA_EDITBOX_MESSAGE_WHISPER_PLAYER_TOOLTIP
+										getglobal(this:GetName().."Text"):SetText(MPOWA_EDITBOX_MESSAGE_WHISPER_PLAYER)
+									</OnLoad>
+									<OnShow>
+										this:ClearFocus()
+									</OnShow>
+									<OnEnterPressed>
+										this:ClearFocus()
+									</OnEnterPressed>
+									<OnEditFocusLost>
+										MPOWA:Editbox_Message_Whisper_Player(this)
+									</OnEditFocusLost>
+									<OnEnter>
+										GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
+										GameTooltip:SetText(this.aide, nil, nil, nil, nil, 1)
+									</OnEnter>
+									<OnLeave>
+										GameTooltip:Hide()
+									</OnLeave>
+								</Scripts>
+								<Layers>
+									<Layer level="OVERLAY">
+										<FontString name="$parentText" inherits="GameFontNormalSmall" justifyH="LEFT" text="">
+											<Size x="120" y="20" />
+											<Anchors>
+												<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+													<Offset x="-2" y="0" />
+												</Anchor>
+											</Anchors>
+										</FontString>
+									</Layer>
+								</Layers>
+							</EditBox>
+							
 							<!--
 							<EditBox name="$parent_Funct_Editbox" autoFocus="true" multiline="true"  letters="10000">
 								<Size x="280" y="360" />

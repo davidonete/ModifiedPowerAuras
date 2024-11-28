@@ -84,7 +84,6 @@ end
 function MPOWA:FShow(key)
 	local p = self.SAVE[key]
 	if not self.frames[key][1]:IsVisible() and p["used"] then
-		self:Print("hello")
 		if p["usebeginsound"] then
 			if p.beginsound < 16 then
 				PlaySound(self.SOUND[p.beginsound], "master")
@@ -123,6 +122,7 @@ function MPOWA:FShow(key)
 				end
 			end
 		end
+		self:SendMessage(p)
 	end
 end
 

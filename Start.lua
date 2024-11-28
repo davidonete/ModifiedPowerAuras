@@ -68,7 +68,14 @@ function MPOWA:CreateSave(i)
 		blendmode = 1,
 		minutes = false,
 		timerfontsize = 1,
-		funct = nil
+		funct = nil,
+		message = "",
+		messageSay = false,
+		messageGroup = false,
+		messageShout = false,
+		messageWhisper = false,
+		messageWhisperPlayer = "",
+		messageRaid = false
 	}
 
 	local cat = i;
@@ -182,6 +189,10 @@ function MPOWA:Init()
 			
 			if val["used"] then
 				self.NumBuffs = cat
+			end
+			
+			if val["message"] then
+				self.SAVE[cat]["message"] = val["message"]
 			end
 			
 			if val["rgmname"] then

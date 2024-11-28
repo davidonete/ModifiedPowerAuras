@@ -176,6 +176,7 @@ MPOWA_EDITBOX_GROUPNUMBER = "Enter group number"
 MPOWA_EDITBOX_FUNCTION_TOOLTIP = "Enter a custom function. Return true to show the aura, false to hide it."
 
 MPOWA_EDITBOX_MESSAGE_TOOLTIP = "Enter the message to broadcast."
+MPOWA_EDITBOX_MESSAGE = "Message to broadcast:"
 MPOWA_CHECKBUTTON_MESSAGE_GROUP_TOOLTIP = "Check this to send the message to the group chat."
 MPOWA_CHECKBUTTON_MESSAGE_GROUP = "Send to Group"
 MPOWA_CHECKBUTTON_MESSAGE_WHISPER_TOOLTIP = "Check this to send the message as a whisper."
@@ -184,8 +185,10 @@ MPOWA_CHECKBUTTON_MESSAGE_RAID_TOOLTIP = "Check this to send the message to the 
 MPOWA_CHECKBUTTON_MESSAGE_RAID = "Send to Raid"
 MPOWA_CHECKBUTTON_MESSAGE_SAY_TOOLTIP = "Check this to send the message to the say chat."
 MPOWA_CHECKBUTTON_MESSAGE_SAY = "Send to Say"
-MPOWA_CHECKBUTTON_MESSAGE_SAY_TOOLTIP = "Check this to send the message as a shout"
-MPOWA_CHECKBUTTON_MESSAGE_SAY = "Send as Shout"
+MPOWA_CHECKBUTTON_MESSAGE_SHOUT_TOOLTIP = "Check this to send the message as a shout"
+MPOWA_CHECKBUTTON_MESSAGE_SHOUT = "Send as Shout"
+MPOWA_EDITBOX_MESSAGE_WHISPER_PLAYER = "Player name:"
+MPOWA_EDITBOX_MESSAGE_WHISPER_PLAYER_TOOLTIP = "The name of the player to whisper."
 
 MPOWA_EDITBOX_TOOLTIP_ICONPATH = "Icon path. Enter the path here if it is not in the list or found by itself."
 
