@@ -508,7 +508,7 @@
 	---------------------------------------------CONFIGURATION FRAME---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	
 	<Frame name="MPowa_ConfigFrame" movable="true" parent="MPowa_MainFrame" frameStrata="HIGH" hidden="true" enableMouse="true" enableKeyboard="true">
-		<Size x="321" y="450" />
+		<Size x="360" y="450" />
 		<Anchors>
 			<Anchor point="RIGHT" relativeTo="MPowa_MainFrame" relativePoint="LEFT" />
         </Anchors>
@@ -574,7 +574,7 @@
 				</Scripts>
 			</Button>
 			<Frame name="$parent_Container">
-				<Size x="290" y="370" />
+				<Size x="330" y="370" />
 				<Anchors>
 					<Anchor point="BOTTOM">
 						<Offset x="0" y="15" />
@@ -582,7 +582,7 @@
 				</Anchors>
 				<Frames>
 					<Frame name="$parent_1" inherits="MPowa_ContainerTemplate">
-						<Size x="290" y="155" />
+						<Size x="320" y="155" />
 						<Frames>
 							<Frame name="$parent_Icon">
 								<Size x="80" y="80" />
@@ -912,7 +912,7 @@
 						</Frames>
 					</Frame>
 					<Frame name="$parent_1_2">
-						<Size x="290" y="190" />
+						<Size x="320" y="190" />
 						<Anchors>
 							<Anchor point="TOP" relativeTo="$parent_1" relativePoint="BOTTOM" />
 						</Anchors>
@@ -2699,12 +2699,123 @@
 							</EditBox>
 						</Frames>
 					</Frame>
+					<Frame name="$parent_8" inherits="MPowa_ContainerTemplate" hidden="true">
+						<Size x="290" y="120" />
+						<Frames>
+							<CheckButton name="$parent_Checkbutton_Say" inherits="MPowa_CheckTemplate">
+								<Anchors>
+									<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+										<Offset x="10" y="-140" />
+									</Anchor>
+								</Anchors>
+								<Scripts>
+									<OnLoad>
+										this.tooltipText = MPOWA_CHECKBUTTON_MESSAGE_SAY_TOOLTIP
+										getglobal(this:GetName().."Text"):SetText(MPOWA_CHECKBUTTON_MESSAGE_SAY)
+									</OnLoad>
+									<OnClick>
+										MPOWA:Checkbutton("messageSay")
+									</OnClick>
+								</Scripts>
+							</CheckButton>
+							<CheckButton name="$parent_Checkbutton_Group" inherits="MPowa_CheckTemplate">
+								<Anchors>
+									<Anchor point="TOPLEFT" relativeTo="$parent_Checkbutton_Say" relativePoint="BOTTOMLEFT">
+										<Offset x="0" y="0" />
+									</Anchor>
+								</Anchors>
+								<Scripts>
+									<OnLoad>
+										this.tooltipText = MPOWA_CHECKBUTTON_MESSAGE_GROUP_TOOLTIP
+										getglobal(this:GetName().."Text"):SetText(MPOWA_CHECKBUTTON_MESSAGE_GROUP)
+									</OnLoad>
+									<OnClick>
+										MPOWA:Checkbutton("messageGroup")
+									</OnClick>
+								</Scripts>
+							</CheckButton>
+							<CheckButton name="$parent_Checkbutton_Whisper" inherits="MPowa_CheckTemplate">
+								<Anchors>
+									<Anchor point="TOPLEFT" relativeTo="$parent_Checkbutton_Group" relativePoint="BOTTOMLEFT">
+										<Offset x="0" y="0" />
+									</Anchor>
+								</Anchors>
+								<Scripts>
+									<OnLoad>
+										this.tooltipText = MPOWA_CHECKBUTTON_MESSAGE_WHISPER_TOOLTIP
+										getglobal(this:GetName().."Text"):SetText(MPOWA_CHECKBUTTON_MESSAGE_WHISPER)
+									</OnLoad>
+									<OnClick>
+										MPOWA:Checkbutton("messageWhisper")
+									</OnClick>
+								</Scripts>
+							</CheckButton>
+							<CheckButton name="$parent_Checkbutton_Shout" inherits="MPowa_CheckTemplate">
+								<Anchors>
+									<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+										<Offset x="180" y="-140" />
+									</Anchor>
+								</Anchors>
+								<Scripts>
+									<OnLoad>
+										this.tooltipText = MPOWA_CHECKBUTTON_MESSAGE_SHOUT_TOOLTIP
+										getglobal(this:GetName().."Text"):SetText(MPOWA_CHECKBUTTON_MESSAGE_SHOUT)
+									</OnLoad>
+									<OnClick>
+										MPOWA:Checkbutton("messageShout")
+									</OnClick>
+								</Scripts>
+							</CheckButton>
+							<CheckButton name="$parent_Checkbutton_Raid" inherits="MPowa_CheckTemplate">
+								<Anchors>
+									<Anchor point="TOPLEFT" relativeTo="$parent_Checkbutton_Shout" relativePoint="BOTTOMLEFT">
+										<Offset x="0" y="0" />
+									</Anchor>
+								</Anchors>
+								<Scripts>
+									<OnLoad>
+										this.tooltipText = MPOWA_CHECKBUTTON_MESSAGE_RAID_TOOLTIP
+										getglobal(this:GetName().."Text"):SetText(MPOWA_CHECKBUTTON_MESSAGE_RAID)
+									</OnLoad>
+									<OnClick>
+										MPOWA:Checkbutton("messageRaid")
+									</OnClick>
+								</Scripts>
+							</CheckButton>
+							<!--
+							<EditBox name="$parent_Funct_Editbox" autoFocus="true" multiline="true"  letters="10000">
+								<Size x="280" y="360" />
+								<Anchors>
+									<Anchor point="TOP" relativeTo="$parent" relativePoint="TOP">
+										<Offset x="0" y="-20" />
+									</Anchor>
+								</Anchors>
+								<FontString inherits="ChatFontNormal" />
+								<Scripts>
+									<OnLoad>
+										this.aide = MPOWA_EDITBOX_MESSAGE_TOOLTIP
+									</OnLoad>
+									<OnTextChanged>
+										MPOWA:Editbox_Function(this)
+									</OnTextChanged>
+									<OnEnter>
+										GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
+										GameTooltip:SetText(this.aide, nil, nil, nil, nil, 1)
+									</OnEnter>
+									<OnLeave>
+										GameTooltip:Hide()
+									</OnLeave>
+								</Scripts>
+							</EditBox>
+							-->
+						</Frames>
+					</Frame>
 				</Frames>
 			</Frame>
 			<Button name="$parent_Tab1" inherits="TabButtonTemplate">
 				<Anchors>
 					<Anchor point="BOTTOMLEFT" relativeTo="$parent_Container" relativePoint="TOPLEFT">
-						<Offset x="5" y="-2" />
+						<Offset x="40" y="-2" />
 					</Anchor>
 				</Anchors>
 				<Scripts>
@@ -2716,6 +2827,7 @@
 						PanelTemplates_DeselectTab(MPowa_ConfigFrame_Tab5)
 						PanelTemplates_DeselectTab(MPowa_ConfigFrame_Tab6)
 						PanelTemplates_DeselectTab(MPowa_ConfigFrame_Tab7)
+						PanelTemplates_DeselectTab(MPowa_ConfigFrame_Tab8)
 						MPowa_ConfigFrame_Container_2:Hide()
 						MPowa_ConfigFrame_Container_2_2:Hide()
 						MPowa_ConfigFrame_Container_3:Hide()
@@ -2728,6 +2840,7 @@
 						MPowa_ConfigFrame_Container_5:Hide()
 						MPowa_ConfigFrame_Container_6:Hide()
 						MPowa_ConfigFrame_Container_7:Hide()
+						MPowa_ConfigFrame_Container_8:Hide()
 					</OnClick>
 					<OnLoad>
 						getglobal(this:GetName().."Text"):SetText(MPOWA_CONFIGFRAME_EFFECT_EDITOR)
@@ -2752,6 +2865,7 @@
 						PanelTemplates_DeselectTab(MPowa_ConfigFrame_Tab5)
 						PanelTemplates_DeselectTab(MPowa_ConfigFrame_Tab6)
 						PanelTemplates_DeselectTab(MPowa_ConfigFrame_Tab7)
+						PanelTemplates_DeselectTab(MPowa_ConfigFrame_Tab8)
 						MPowa_ConfigFrame_Container_1:Hide()
 						MPowa_ConfigFrame_Container_1_2:Hide()
 						MPowa_ConfigFrame_Container_3:Hide()
@@ -2764,6 +2878,7 @@
 						MPowa_ConfigFrame_Container_5:Hide()
 						MPowa_ConfigFrame_Container_6:Hide()
 						MPowa_ConfigFrame_Container_7:Hide()
+						MPowa_ConfigFrame_Container_8:Hide()
 					</OnClick>
 					<OnLoad>
 						getglobal(this:GetName().."Text"):SetText(MPOWA_CONFIGFRAME_TIMER_EDITOR)
@@ -2788,6 +2903,7 @@
 						PanelTemplates_DeselectTab(MPowa_ConfigFrame_Tab5)
 						PanelTemplates_DeselectTab(MPowa_ConfigFrame_Tab6)
 						PanelTemplates_DeselectTab(MPowa_ConfigFrame_Tab7)
+						PanelTemplates_DeselectTab(MPowa_ConfigFrame_Tab8)
 						MPowa_ConfigFrame_Container_1:Hide()
 						MPowa_ConfigFrame_Container_1_2:Hide()
 						MPowa_ConfigFrame_Container_2:Hide()
@@ -2800,6 +2916,7 @@
 						MPowa_ConfigFrame_Container_5:Hide()
 						MPowa_ConfigFrame_Container_6:Hide()
 						MPowa_ConfigFrame_Container_7:Hide()
+						MPowa_ConfigFrame_Container_8:Hide()
 					</OnClick>
 					<OnLoad>
 						getglobal(this:GetName().."Text"):SetText(MPOWA_CONFIGFRAME_SOUND_EDITOR)
@@ -2824,6 +2941,7 @@
 						PanelTemplates_DeselectTab(MPowa_ConfigFrame_Tab5)
 						PanelTemplates_DeselectTab(MPowa_ConfigFrame_Tab6)
 						PanelTemplates_DeselectTab(MPowa_ConfigFrame_Tab7)
+						PanelTemplates_DeselectTab(MPowa_ConfigFrame_Tab8)
 						MPowa_ConfigFrame_Container_1:Hide()
 						MPowa_ConfigFrame_Container_1_2:Hide()
 						MPowa_ConfigFrame_Container_2:Hide()
@@ -2836,6 +2954,7 @@
 						MPowa_ConfigFrame_Container_5:Hide()
 						MPowa_ConfigFrame_Container_6:Hide()
 						MPowa_ConfigFrame_Container_7:Hide()
+						MPowa_ConfigFrame_Container_8:Hide()
 					</OnClick>
 					<OnLoad>
 						getglobal(this:GetName().."Text"):SetText(MPOWA_CONFIGFRAME_ABOUT)
@@ -2848,7 +2967,7 @@
 			<Button name="$parent_Tab5" inherits="TabButtonTemplate">
 				<Anchors>
 					<Anchor point="BOTTOM" relativeTo="$parent_Tab1" relativePoint="TOP">
-						<Offset x="13" y="-8" />
+						<Offset x="-20" y="-8" />
 					</Anchor>
 				</Anchors>
 				<Scripts>
@@ -2860,6 +2979,7 @@
 						PanelTemplates_DeselectTab(MPowa_ConfigFrame_Tab4)
 						PanelTemplates_DeselectTab(MPowa_ConfigFrame_Tab6)
 						PanelTemplates_DeselectTab(MPowa_ConfigFrame_Tab7)
+						PanelTemplates_DeselectTab(MPowa_ConfigFrame_Tab8)
 						MPowa_ConfigFrame_Container_1:Hide()
 						MPowa_ConfigFrame_Container_1_2:Hide()
 						MPowa_ConfigFrame_Container_2:Hide()
@@ -2872,6 +2992,7 @@
 						MPowa_ConfigFrame_Container_5:Show()
 						MPowa_ConfigFrame_Container_6:Hide()
 						MPowa_ConfigFrame_Container_7:Hide()
+						MPowa_ConfigFrame_Container_8:Hide()
 					</OnClick>
 					<OnLoad>
 						getglobal(this:GetName().."Text"):SetText(MPOWA_CONFIGFRAME_ANIMATION)
@@ -2896,6 +3017,7 @@
 						PanelTemplates_DeselectTab(MPowa_ConfigFrame_Tab4)
 						PanelTemplates_DeselectTab(MPowa_ConfigFrame_Tab5)
 						PanelTemplates_DeselectTab(MPowa_ConfigFrame_Tab7)
+						PanelTemplates_DeselectTab(MPowa_ConfigFrame_Tab8)
 						MPowa_ConfigFrame_Container_1:Hide()
 						MPowa_ConfigFrame_Container_1_2:Hide()
 						MPowa_ConfigFrame_Container_2:Hide()
@@ -2908,6 +3030,7 @@
 						MPowa_ConfigFrame_Container_5:Hide()
 						MPowa_ConfigFrame_Container_6:Show()
 						MPowa_ConfigFrame_Container_7:Hide()
+						MPowa_ConfigFrame_Container_8:Hide()
 					</OnClick>
 					<OnLoad>
 						getglobal(this:GetName().."Text"):SetText(MPOWA_CONFIGFRAME_GROUP)
@@ -2931,6 +3054,8 @@
 						PanelTemplates_DeselectTab(MPowa_ConfigFrame_Tab3)
 						PanelTemplates_DeselectTab(MPowa_ConfigFrame_Tab4)
 						PanelTemplates_DeselectTab(MPowa_ConfigFrame_Tab5)
+						PanelTemplates_DeselectTab(MPowa_ConfigFrame_Tab6)
+						PanelTemplates_DeselectTab(MPowa_ConfigFrame_Tab8)
 						MPowa_ConfigFrame_Container_1:Hide()
 						MPowa_ConfigFrame_Container_1_2:Hide()
 						MPowa_ConfigFrame_Container_2:Hide()
@@ -2943,9 +3068,48 @@
 						MPowa_ConfigFrame_Container_5:Hide()
 						MPowa_ConfigFrame_Container_6:Hide()
 						MPowa_ConfigFrame_Container_7:Show()
+						MPowa_ConfigFrame_Container_8:Hide()
 					</OnClick>
 					<OnLoad>
-						getglobal(this:GetName().."Text"):SetText("Functions")
+						getglobal(this:GetName().."Text"):SetText(MPOWA_CONFIGFRAME_FUNCTIONS)
+						PanelTemplates_DeselectTab(this)
+						PanelTemplates_TabResize(0, this)
+						getglobal(this:GetName().."HighlightTexture"):SetWidth(this:GetTextWidth() + 31)
+					</OnLoad>
+				</Scripts>
+			</Button>
+			<Button name="$parent_Tab8" inherits="TabButtonTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_Tab7" relativePoint="RIGHT">
+						<Offset x="0" y="0" />
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						PanelTemplates_SelectTab(this)
+						PanelTemplates_DeselectTab(MPowa_ConfigFrame_Tab1)
+						PanelTemplates_DeselectTab(MPowa_ConfigFrame_Tab2)
+						PanelTemplates_DeselectTab(MPowa_ConfigFrame_Tab3)
+						PanelTemplates_DeselectTab(MPowa_ConfigFrame_Tab4)
+						PanelTemplates_DeselectTab(MPowa_ConfigFrame_Tab5)
+						PanelTemplates_DeselectTab(MPowa_ConfigFrame_Tab6)
+						PanelTemplates_DeselectTab(MPowa_ConfigFrame_Tab7)
+						MPowa_ConfigFrame_Container_1:Hide()
+						MPowa_ConfigFrame_Container_1_2:Hide()
+						MPowa_ConfigFrame_Container_2:Hide()
+						MPowa_ConfigFrame_Container_2_2:Hide()
+						MPowa_ConfigFrame_Container_3:Hide()
+						MPowa_ConfigFrame_Container_4:Hide()
+						MPowa_ConfigFrame_Container_4_2:Hide()
+						MPowa_ConfigFrame_Container_4_3:Hide()
+						MPowa_ConfigFrame_Container_4_4:Hide()
+						MPowa_ConfigFrame_Container_5:Hide()
+						MPowa_ConfigFrame_Container_6:Hide()
+						MPowa_ConfigFrame_Container_7:Hide()
+						MPowa_ConfigFrame_Container_8:Show()
+					</OnClick>
+					<OnLoad>
+						getglobal(this:GetName().."Text"):SetText(MPOWA_CONFIGFRAME_MESSAGES)
 						PanelTemplates_DeselectTab(this)
 						PanelTemplates_TabResize(0, this)
 						getglobal(this:GetName().."HighlightTexture"):SetWidth(this:GetTextWidth() + 31)
